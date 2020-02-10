@@ -59,4 +59,5 @@ script:
   - bash -c "./configure.sh --${SOLVER} --python"
   - bash -c "cd build && make -j && make test"
   - bash -c "sudo python3 -m pip install ./build/python"
+  - bash -c "export PYTHONPATH=$PYTHONPATH:./build/python"
   - bash -c "python3 -c \"import smt_switch as ss\""
