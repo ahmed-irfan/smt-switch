@@ -203,7 +203,7 @@ size_t MsatTerm::hash() const
 
 bool MsatTerm::compare(const Term & absterm) const
 {
-  shared_ptr<MsatTerm> mterm = std::static_pointer_cast<MsatTerm>(absterm);
+  shared_ptr<const MsatTerm> mterm = static_pointer_cast<const MsatTerm>(absterm);
   if (is_uf ^ mterm->is_uf)
   {
     // can't be equal if one is a uf and the other is not
@@ -517,9 +517,9 @@ uint64_t MsatTerm::to_int() const
   }
 }
 
-TermIter MsatTerm::begin() { return TermIter(new MsatTermIter(env, term, 0)); }
+TermIter MsatTerm::begin() const { return TermIter(new MsatTermIter(env, term, 0)); }
 
-TermIter MsatTerm::end()
+TermIter MsatTerm::end() const
 {
   if (is_uf)
   {
